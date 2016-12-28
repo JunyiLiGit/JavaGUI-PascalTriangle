@@ -9,12 +9,10 @@ import javax.swing.*;
 import javax.swing.text.*;
 
 class PascalTriangleView {
-
 	private final Button btnAddRow;
 	private final Button btnRemoveRow;
 	private final JTextPane textPane;
 	private final JComboBox choiceList;
-
 	//store the position of each character in the screen
 	private final ArrayList<Integer> position;
 
@@ -41,17 +39,14 @@ class PascalTriangleView {
 
 		choiceList = new JComboBox(choiceStrings);
 		//choiceList.setSelectedIndex(4);
-
 		panel.add(btnAddRow);
 		panel.add(btnRemoveRow);
 		panel.add(choiceList);
 		frame.add("South", panel);
-
 		// Create text pane to display Pascal's Triangle
 		textPane = new JTextPane();
 		textPane.setEditable(false);
 		StyledDocument doc = textPane.getStyledDocument();
-
 		SimpleAttributeSet center = new SimpleAttributeSet();
 		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
 		doc.setParagraphAttributes(0, doc.getLength(), center, false);
@@ -168,7 +163,6 @@ class PascalTriangleView {
 			textPane.getDocument().remove(beginOffset, length);
 			offset = beginOffset;
 			position.subList(begin, end + 1).clear();
-
 			--rowNumber;
 		}
 	}

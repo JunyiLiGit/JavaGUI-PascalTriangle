@@ -23,7 +23,6 @@ public class PascalTriangleBeapModel extends PascalTriangleModel {
 
 		public void setData(int newData) {
 			data = newData;
-
 		}
 
 		public int getData() {
@@ -38,34 +37,27 @@ public class PascalTriangleBeapModel extends PascalTriangleModel {
 	//add row to the beap
 	@Override
 	public ArrayList<Integer> addRow() {
-
 		if (numRows == 0) {
 			root = new Node(1);
 			dataToControllerArrayList.add(root.data);
 			numRows = numRows + 1;
-
 		} else {
-
 			Node n = root;
 			Node m = root;
 			while (n.leftChild != null) {
 				n = n.leftChild;
 			}
-
 			while (m.rightChild != null) {
 				m = m.rightChild;
 			}
-
 			Node leftMost = new Node(1);
 			Node rightMost = new Node(1);
 			n.leftChild = leftMost;
 			leftMost.rightParent = n;
 			m.rightChild = rightMost;
 			rightMost.leftParent = m;
-
 			Node start = leftMost;
 			Node end = rightMost;
-
 			if (numRows == 2) {
 				int newData = m.data + n.data;
 				Node newNode = new Node(newData);
@@ -74,7 +66,6 @@ public class PascalTriangleBeapModel extends PascalTriangleModel {
 				newNode.leftParent = n;
 				newNode.rightParent = m;
 			}
-
 			for (int i = 0; i < Math.ceil((float) (numRows - 2) / 2.0); ++i) {
 				Node p = n;
 				Node q = m;
@@ -165,13 +156,10 @@ public class PascalTriangleBeapModel extends PascalTriangleModel {
 					p = p.rightParent.rightChild;
 				} else {
 					p = null;
-
 				}
 			}
-
 			while (q.leftChild != null) {
 				q = q.leftChild;
-
 			}
 			if (q != null) {
 				Node m = q.rightParent;
@@ -184,7 +172,6 @@ public class PascalTriangleBeapModel extends PascalTriangleModel {
 						m = m.rightParent.rightChild;
 					} else {
 						m = null;
-
 					}
 				}
 			}

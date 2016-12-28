@@ -9,10 +9,8 @@ import javax.swing.JComboBox;
 import javax.swing.text.BadLocationException;
 
 class PascalTriangleController implements java.awt.event.ActionListener {
-
 	private PascalTriangleModel model;
 	private PascalTriangleView view;
-
 	//indexArrayList: data that needs to be sent to the view
 	private ArrayList<Integer> indexArrayList;
 
@@ -21,7 +19,6 @@ class PascalTriangleController implements java.awt.event.ActionListener {
 	// by default the user will still see all square numbers in pascal's triangle
 	private final boolean[] colorStatus = new boolean[5];
 	private final int maxRow;
-
 	PascalTriangleController() {
 		indexArrayList = new ArrayList<>();
 		maxRow = 23;
@@ -45,7 +42,6 @@ class PascalTriangleController implements java.awt.event.ActionListener {
 			view.drawRow(tmp);
 		}
 	}
-
 	// Handles UI buttons from the view
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -82,11 +78,8 @@ class PascalTriangleController implements java.awt.event.ActionListener {
 							System.out.println("not enough space");
 
 						}
-
 						break;
-
 					case "Remove Row":
-
 						model.removeRow();
 						view.eraseColor();
 						view.eraseRow();
@@ -107,7 +100,6 @@ class PascalTriangleController implements java.awt.event.ActionListener {
 						view.colorNumber(indexArrayList);
 
 						break;
-
 				}
 			}
 
@@ -148,7 +140,6 @@ class PascalTriangleController implements java.awt.event.ActionListener {
 							break;
 						case "Square Numbers":
 							indexArrayList = squareNumner();
-
 							 {
 								colorStatus[0] = false;
 								colorStatus[1] = false;
@@ -157,7 +148,6 @@ class PascalTriangleController implements java.awt.event.ActionListener {
 								colorStatus[4] = false;
 								view.setColor(3);
 								updateColor(indexArrayList);
-
 							}
 
 							break;
@@ -194,7 +184,6 @@ class PascalTriangleController implements java.awt.event.ActionListener {
 				} catch (BadLocationException ex) {
 					Logger.getLogger(PascalTriangleController.class.getName()).log(Level.SEVERE, null, ex);
 				}
-
 			}
 		} // actionPerformed
 		catch (BadLocationException ex) {
@@ -290,5 +279,4 @@ class PascalTriangleController implements java.awt.event.ActionListener {
 	public int getRowIndex(int row) {
 		return row * (row + 1) / 2;
 	} // getRowIndex
-
 } // PascalTriangleController
