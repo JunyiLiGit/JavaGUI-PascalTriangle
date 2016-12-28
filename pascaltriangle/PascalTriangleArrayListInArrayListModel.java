@@ -1,109 +1,77 @@
-
-
-
 package pascaltriangle;
 
-
 import java.util.ArrayList;
-
-
-/**
- *
- * @author kaitlyn
- */
-
 public class PascalTriangleArrayListInArrayListModel extends PascalTriangleModel {
 
 //ptArrayList: store Pascal's trangle 
-    private final ArrayList<ArrayList<Integer>> ptArrayListInArrayList;
- //date that the controller needs to get for each action
-    private final ArrayList<Integer> dataToControllerArrayList;
+	private final ArrayList<ArrayList<Integer>> ptArrayListInArrayList;
+	//date that the controller needs to get for each action
+	private final ArrayList<Integer> dataToControllerArrayList;
 
- 
-  
-    public PascalTriangleArrayListInArrayListModel() {
-        ptArrayListInArrayList = new ArrayList<>(30);
-        dataToControllerArrayList = new ArrayList<>(30);
-        
+	public PascalTriangleArrayListInArrayListModel() {
+		ptArrayListInArrayList = new ArrayList<>(30);
+		dataToControllerArrayList = new ArrayList<>(30);
 
-    }
+	}
 
+	@Override
+	public ArrayList<Integer> addRow() {
 
+		if (numRows == 0) {
 
-    @Override
-    public ArrayList<Integer> addRow() 
-    {
-        
-     
+			ArrayList<Integer> p = new ArrayList<>(1);
+			p.add(1);
+			ptArrayListInArrayList.add(0, p);
 
-            if (numRows == 0) {
+			dataToControllerArrayList.add(1);
 
-                ArrayList<Integer> p = new ArrayList<>(1);
-                p.add(1);
-                ptArrayListInArrayList.add(0, p);
-                
-                dataToControllerArrayList.add(1);
-                
-                numRows = numRows + 1;
-               
-                
+			numRows = numRows + 1;
 
-            } else if (numRows > 0) {
-                dataToControllerArrayList.clear();
-                
-                Integer leftOne = 1;
-                Integer rightOne = 1;
-                ArrayList<Integer> p = new ArrayList<>(numRows + 1);
-                p.add(0, leftOne);
-                dataToControllerArrayList.add(1);
+		} else if (numRows > 0) {
+			dataToControllerArrayList.clear();
 
-                for (int i = 0; i < numRows - 1; ++i) {
-                    
-                    int pre = ptArrayListInArrayList.get(numRows - 1).get(i);
-                    int next = ptArrayListInArrayList.get(numRows - 1).get(i + 1);
-                    
-                    int current = pre + next;
-                    
-                    p.add(i + 1, current);
-                    dataToControllerArrayList.add(current);
+			Integer leftOne = 1;
+			Integer rightOne = 1;
+			ArrayList<Integer> p = new ArrayList<>(numRows + 1);
+			p.add(0, leftOne);
+			dataToControllerArrayList.add(1);
 
-                }
+			for (int i = 0; i < numRows - 1; ++i) {
 
-                p.add(numRows, rightOne);
+				int pre = ptArrayListInArrayList.get(numRows - 1).get(i);
+				int next = ptArrayListInArrayList.get(numRows - 1).get(i + 1);
 
-                ptArrayListInArrayList.add(numRows, p);
-                
-                dataToControllerArrayList.add(1);
+				int current = pre + next;
 
-                numRows = numRows + 1;
+				p.add(i + 1, current);
+				dataToControllerArrayList.add(current);
 
+			}
 
-            }
+			p.add(numRows, rightOne);
 
-        
+			ptArrayListInArrayList.add(numRows, p);
 
-        
-       return dataToControllerArrayList; 
+			dataToControllerArrayList.add(1);
 
-    }
-    
-     
+			numRows = numRows + 1;
 
-   
-    @Override
-    public void removeRow() 
-    {
-        if (numRows > 0) {
+		}
 
-            --numRows;
-            ptArrayListInArrayList.remove(ptArrayListInArrayList.size()-1);
+		return dataToControllerArrayList;
 
-        }
-        dataToControllerArrayList.clear();
+	}
 
-    } 
-     
-    
+	@Override
+	public void removeRow() {
+		if (numRows > 0) {
+
+			--numRows;
+			ptArrayListInArrayList.remove(ptArrayListInArrayList.size() - 1);
+
+		}
+		dataToControllerArrayList.clear();
+
+	}
+
 }
-
-
